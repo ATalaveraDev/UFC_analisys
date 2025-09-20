@@ -1,4 +1,7 @@
 class UFC_Event:
+  RED = 'red'
+  BLUE = 'blue'
+
   def set_name(self, name):
     self.name = name
     
@@ -6,8 +9,50 @@ class UFC_Event:
     self.date = date.replace('DATE: ', '')
 
   def set_fighters(self, fighters):
-    self.red_name = fighters['red']
-    self.blue_name = fighters['blue']
+    self.red_name = fighters[self.RED]
+    self.blue_name = fighters[self.BLUE]
+  
+  def set_total_kds(self, kds):
+    self.red_total_kds = kds[self.RED]
+    self.blue_total_kds = kds[self.BLUE]
+
+  def set_total_sig_str(self, sig_str):
+    self.red_total_atmpd_sig_str = sig_str[self.RED][0]
+    self.red_total_landed_sig_str = sig_str[self.RED][1]
+    self.blue_total_atmpd_sig_str = sig_str[self.BLUE][0]
+    self.blue_total_landed_sig_str = sig_str[self.BLUE][1]
+
+  def set_total_sig_str_acc(self, sig_str_acc):
+    self.red_total_sig_str_acc = sig_str_acc[self.RED]
+    self.blue_total_sig_str_acc = sig_str_acc[self.BLUE]
+
+  def set_total_str(self, total_str):
+    self.red_total_atmpd_str = total_str[self.RED][0]
+    self.red_total_landed_str = total_str[self.RED][1]
+    self.blue_total_atmpd_str = total_str[self.BLUE][0]
+    self.blue_total_landed_str = total_str[self.BLUE][1]
+
+  def set_total_td(self, total_td):
+    self.red_total_td_atmpd = total_td[self.RED][0]
+    self.red_total_td_landed = total_td[self.RED][1]
+    self.blue_total_td_atmpd = total_td[self.BLUE][0]
+    self.blue_total_td_landed = total_td[self.BLUE][1]
+
+  def set_total_td_acc(self, td_acc):
+    self.red_total_td_acc = td_acc[self.RED]
+    self.blue_total_td_acc = td_acc[self.BLUE]
+
+  def set_total_sub_att(self, sub_att):
+    self.red_total_sub_att = sub_att[self.RED]
+    self.blue_total_sub_att = sub_att[self.BLUE]
+
+  def set_total_rev(self, rev):
+    self.red_total_rev = rev[self.RED]
+    self.blue_total_rev = rev[self.BLUE]
+  
+  def set_total_ctrl(self, ctrl):
+    self.red_total_ctrl = ctrl[self.RED]
+    self.blue_total_ctrl = ctrl[self.BLUE]
 
   def __str__(self):
-    return f'"{self.name}","{self.date}","{self.red_name}","{self.blue_name}"'
+    return f'''"{self.name}","{self.date}","{self.red_name}","{self.blue_name}","{self.red_total_kds}","{self.blue_total_kds}","{self.red_total_atmpd_sig_str}","{self.red_total_landed_sig_str}","{self.blue_total_atmpd_sig_str}","{self.blue_total_landed_sig_str}","{self.red_total_sig_str_acc}","{self.blue_total_sig_str_acc}","{self.red_total_atmpd_str}","{self.red_total_landed_str}","{self.blue_total_atmpd_str}","{self.blue_total_landed_str}","{self.red_total_td_atmpd}","{self.red_total_td_landed}","{self.blue_total_td_atmpd}","{self.blue_total_td_landed}","{self.blue_total_td_acc}","{self.blue_total_td_acc}","{self.red_total_sub_att}","{self.blue_total_sub_att}","{self.red_total_rev}","{self.blue_total_rev}","{self.red_total_ctrl}","{self.blue_total_ctrl}"'''
