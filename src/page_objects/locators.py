@@ -1,9 +1,14 @@
 from selenium.webdriver.common.by import By
 
 class EventsListPageLocators(object):
-  ROWS = (By.CSS_SELECTOR, '.b-statistics__table-events tr.b-statistics__table-row')
+  ROWS = (By.CSS_SELECTOR, '.b-statistics__table-events tr.b-statistics__table-row td i a')
   EVENT_LINK = (By.CSS_SELECTOR, 'i.b-statistics__table-content a')
 
 class EventPageLocators(object):
   TITLE = (By.CSS_SELECTOR, '.b-content__title-highlight')
   DATE = (By.CSS_SELECTOR, '.b-list__info-box ul > li')
+  FIGHTS = (By.CSS_SELECTOR, '.b-fight-details__table-body tr')
+
+class FightDetailsPageLocator(object):
+  FIGHTERS = (By.CSS_SELECTOR, '.b-fight-details__person')
+  FIGHTER_NAME = (By.CSS_SELECTOR, '.b-fight-details__person-link')
