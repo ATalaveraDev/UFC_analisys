@@ -1,17 +1,21 @@
 from selenium import webdriver
 from models.ufc_event import UFC_Event
 from page_objects.page import EventPage, EventsListPage, FightDetailsPage
+from csv_writer import CsvWriter
+from config import HEADERS, ENDPOINT
+
+csv_writer = CsvWriter()
+csv_writer.set_headers(HEADERS)
 
 driver = webdriver.Chrome()
-driver.get('http://ufcstats.com/statistics/events/completed?page=all')
+driver.get(ENDPOINT)
 
 ufc_events_page = EventsListPage(driver)
 events_links = ufc_events_page.get_events_links()
-print('Event name, Event date, red_name, blue_name, red_total_kds, blue_total_kds, red_total_atmpd_sig_str, red_total_landed_sig_str, blue_total_atmpd_sig_str, blue_total_landed_sig_str, red_total_sig_str_acc, blue_total_sig_str_acc, red_total_atmpd_str, red_total_landed_str, blue_total_atmpd_str, blue_total_landed_str')
 for event_link in events_links[0:3]:
-  ufc_event = UFC_Event()
+  ufc_event = UFC_Event(event_link)
   
-  driver.get(event_link)
+  driver.get(ufc_event.link)
   details_page: EventPage = EventPage(driver)
   ufc_event.set_name(details_page.get_title())
   ufc_event.set_date(details_page.get_date())
@@ -30,8 +34,9 @@ for event_link in events_links[0:3]:
     ufc_event.set_total_td_acc(fight_page.get_total_td_acc())
     ufc_event.set_total_sub_att(fight_page.get_total_sub_att())
     ufc_event.set_total_rev(fight_page.get_total_rev())
+    ufc_event.set_total_ctrl(fight_page.get_total_ctrl())
 
-    print(ufc_event)
+    csv_writer.write_row(ufc_event.__str__())
     driver.execute_script("window.history.go(-1)")
   
   driver.execute_script("window.history.go(-1)")

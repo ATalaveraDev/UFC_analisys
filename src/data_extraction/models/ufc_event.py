@@ -2,6 +2,9 @@ class UFC_Event:
   RED = 'red'
   BLUE = 'blue'
 
+  def __init__(self, link):
+    self.link = link
+
   def set_name(self, name):
     self.name = name
     
@@ -23,8 +26,8 @@ class UFC_Event:
     self.blue_total_landed_sig_str = sig_str[self.BLUE][1]
 
   def set_total_sig_str_acc(self, sig_str_acc):
-    self.red_total_sig_str_acc = sig_str_acc[self.RED]
-    self.blue_total_sig_str_acc = sig_str_acc[self.BLUE]
+    self.red_total_sig_str_acc = sig_str_acc[self.RED].replace('%', '')
+    self.blue_total_sig_str_acc = sig_str_acc[self.BLUE].replace('%', '')
 
   def set_total_str(self, total_str):
     self.red_total_atmpd_str = total_str[self.RED][0]
@@ -39,8 +42,8 @@ class UFC_Event:
     self.blue_total_td_landed = total_td[self.BLUE][1]
 
   def set_total_td_acc(self, td_acc):
-    self.red_total_td_acc = td_acc[self.RED]
-    self.blue_total_td_acc = td_acc[self.BLUE]
+    self.red_total_td_acc = td_acc[self.RED].replace('%', '')
+    self.blue_total_td_acc = td_acc[self.BLUE].replace('%', '')
 
   def set_total_sub_att(self, sub_att):
     self.red_total_sub_att = sub_att[self.RED]
@@ -54,5 +57,8 @@ class UFC_Event:
     self.red_total_ctrl = ctrl[self.RED]
     self.blue_total_ctrl = ctrl[self.BLUE]
 
+  def get_totals(self):
+    return f'{self.name},"{self.date}",{self.red_name},{self.blue_name},{self.red_total_kds},{self.blue_total_kds},{self.red_total_atmpd_sig_str},{self.red_total_landed_sig_str},{self.blue_total_atmpd_sig_str},{self.blue_total_landed_sig_str},{self.red_total_sig_str_acc},{self.blue_total_sig_str_acc},{self.red_total_atmpd_str},{self.red_total_landed_str},{self.blue_total_atmpd_str},{self.blue_total_landed_str},{self.red_total_td_atmpd},{self.red_total_td_landed},{self.blue_total_td_atmpd},{self.blue_total_td_landed},{self.blue_total_td_acc},{self.blue_total_td_acc},{self.red_total_sub_att},{self.blue_total_sub_att},{self.red_total_rev},{self.blue_total_rev},{self.red_total_ctrl},{self.blue_total_ctrl}'
+
   def __str__(self):
-    return f'''"{self.name}","{self.date}","{self.red_name}","{self.blue_name}","{self.red_total_kds}","{self.blue_total_kds}","{self.red_total_atmpd_sig_str}","{self.red_total_landed_sig_str}","{self.blue_total_atmpd_sig_str}","{self.blue_total_landed_sig_str}","{self.red_total_sig_str_acc}","{self.blue_total_sig_str_acc}","{self.red_total_atmpd_str}","{self.red_total_landed_str}","{self.blue_total_atmpd_str}","{self.blue_total_landed_str}","{self.red_total_td_atmpd}","{self.red_total_td_landed}","{self.blue_total_td_atmpd}","{self.blue_total_td_landed}","{self.blue_total_td_acc}","{self.blue_total_td_acc}","{self.red_total_sub_att}","{self.blue_total_sub_att}","{self.red_total_rev}","{self.blue_total_rev}","{self.red_total_ctrl}","{self.blue_total_ctrl}"'''
+    return f'{self.get_totals()}\n'
