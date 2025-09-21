@@ -2,6 +2,14 @@
 This project generates a CSV file with the data that appears on the official UFC statistics website.
 
 ![alt text](ufc_stats_logo.png "UFC Stats Page")
+
+# Table of Contents
+1. [Strategy](#Strategy)
+2. [Data Processing](#data-processing)
+3. [Quick Start](#quick-start)
+4. [Example of use](#example-of-use)
+5. [Python](#python)
+
 ## Strategy
 For this task, web scraping using Selenium was used.
 ## Data Processing
@@ -17,7 +25,7 @@ pip install -r requirements.txt
 windows: python .\src\data_extraction\dataset.py
 linux | mac: 
 ```
-## Example
+## Example of use
 Original data source
 
 ![alt text](data_source_img.png "UFC Stats Page")
