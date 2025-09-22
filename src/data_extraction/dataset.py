@@ -1,8 +1,9 @@
 from selenium import webdriver
 from models.ufc_event import UFC_Event
-from page_objects.page import EventPage, EventsListPage, FightDetailsPage
+from page_objects.page import EventPage, EventsListPage
 from csv_writer import CsvWriter
 from config import HEADERS, ENDPOINT
+from page_objects.fight_details_page import FightDetailsPage
 
 csv_writer = CsvWriter()
 csv_writer.set_headers(HEADERS)

@@ -12,6 +12,6 @@ class EventPageLocators(object):
 class FightDetailsPageLocator(object):
   FIGHTERS = (By.CSS_SELECTOR, '.b-fight-details__person')
   FIGHTER_NAME = (By.CSS_SELECTOR, '.b-fight-details__person-link')
-  TOTALS_SECTION = (By.CSS_SELECTOR, 'section.b-fight-details__section.js-fight-section')
+  TABLE_SECTION = (By.CSS_SELECTOR, 'section.b-fight-details__section.js-fight-section')
   TOTALS_COLS = (By.CSS_SELECTOR, 'td.b-fight-details__table-col')
   COL_CONTENTS = (By.CSS_SELECTOR, 'p')
