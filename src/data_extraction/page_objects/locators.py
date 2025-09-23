@@ -15,3 +15,5 @@ class FightDetailsPageLocator(object):
   TABLE_SECTION = (By.CSS_SELECTOR, 'section.b-fight-details__section.js-fight-section')
   TOTALS_COLS = (By.CSS_SELECTOR, 'td.b-fight-details__table-col')
   COL_CONTENTS = (By.CSS_SELECTOR, 'p')
+  ROUND_HEADER = (By.CSS_SELECTOR, 'thead.b-fight-details__table-row_type_head th')
+  ROUND_BODY = (By.CSS_SELECTOR, 'tbody')

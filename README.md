@@ -57,7 +57,8 @@ python -m venv /path/to/new/virtual/environment
 
 Once the command finishes run the activation script
 ```
-.\venv\Scripts\activate
+windows: .\venv\Scripts\activate
+macos | linux: source ./.venv/bin/activate
 ```
 
 #### Dependencies

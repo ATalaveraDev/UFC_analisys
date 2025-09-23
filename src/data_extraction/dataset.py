@@ -37,6 +37,12 @@ for event_link in events_links[0:3]:
     ufc_event.set_total_rev(fight_page.get_total_rev())
     ufc_event.set_total_ctrl(fight_page.get_total_ctrl())
 
+    striking_rounds = fight_page.get_striking_rounds()
+
+    if len(striking_rounds):
+      for i in range(len(striking_rounds)):
+        fight_page.get_striking_round()
+
     csv_writer.write_row(ufc_event.__str__())
     driver.execute_script("window.history.go(-1)")
   

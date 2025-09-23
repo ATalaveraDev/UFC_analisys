@@ -5,7 +5,7 @@ class FightDetailsPage(BasePage):
   def __init__(self, driver):
     super().__init__(driver)
     self.totals_section = self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[1]
-    self.rounds_section = self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[2]
+    self.striking_rounds_section = self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[2]
 
   def get_fighters(self):
     fighters = self.driver.find_elements(*FightDetailsPageLocator.FIGHTERS)
@@ -80,4 +80,10 @@ class FightDetailsPage(BasePage):
       'red': cells[0].text,
       'blue': cells[1].text
     }
+  
+  def get_striking_rounds(self):
+    return self.striking_rounds_section.find_elements(*FightDetailsPageLocator.ROUND_HEADER)
+  
+  def get_striking_round(self, index):
+    return self.striking_rounds_section.find_elements(*FightDetailsPageLocator.ROUND_BODY)[index]
     
