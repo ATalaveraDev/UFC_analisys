@@ -26,7 +26,13 @@ HEADERS = [
   'red_total_rev',
   'blue_total_rev',
   'red_total_ctrl',
-  'blue_total_ctrl'
+  'blue_total_ctrl',
+  'red_r1_kds',
+  'blue_r1_kds',
+  'red_r2_kds',
+  'blue_r2_kds',
+  'red_r3_kds',
+  'blue_r3_kds'
 ]
 
 ENDPOINT = 'http://ufcstats.com/statistics/events/completed?page=all'

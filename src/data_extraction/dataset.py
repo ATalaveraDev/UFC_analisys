@@ -4,6 +4,7 @@ from page_objects.page import EventPage, EventsListPage
 from csv_writer import CsvWriter
 from config import HEADERS, ENDPOINT
 from page_objects.fight_details_page import FightDetailsPage
+from page_objects.round import Round
 
 csv_writer = CsvWriter()
 csv_writer.set_headers(HEADERS)
@@ -41,7 +42,9 @@ for event_link in events_links[0:3]:
 
     if len(striking_rounds):
       for i in range(len(striking_rounds)):
-        fight_page.get_striking_round()
+        round = Round(driver, i+1)
+        round.section.click()
+        ufc_event.set_round_kds(i+1, round.get_kds())
 
     csv_writer.write_row(ufc_event.__str__())
     driver.execute_script("window.history.go(-1)")

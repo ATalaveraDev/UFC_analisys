@@ -57,8 +57,35 @@ class UFC_Event:
     self.red_total_ctrl = ctrl[self.RED]
     self.blue_total_ctrl = ctrl[self.BLUE]
 
+  def set_round_kds(self, round, kds):
+    if round == 1:
+      self.red_r1_kds = kds[self.RED]
+      self.blue_r1_kds = kds[self.BLUE]
+    if round == 2:
+      self.red_r2_kds = kds[self.RED]
+      self.blue_r2_kds = kds[self.BLUE]
+    if round == 3:
+      self.red_r3_kds = kds[self.RED]
+      self.blue_r3_kds = kds[self.BLUE]
+  
+  def get_rounds_kds(self):
+    res = ''
+    if hasattr(self, 'red_r1_kds') and hasattr(self, 'blue_r1_kds'):
+      res += f'{self.red_r1_kds},{self.blue_r1_kds}'
+    else:
+      res += 'null,null'
+    if hasattr(self, 'red_r2_kds') and hasattr(self, 'blue_r2_kds'):
+      res += f',{self.red_r2_kds},{self.blue_r2_kds}'
+    else:
+      res += 'null,null'
+    if hasattr(self, 'red_r3_kds') and hasattr(self, 'blue_r3_kds'):  
+      res += f',{self.red_r3_kds},{self.blue_r3_kds}'
+    else:
+      res += 'null,null'
+    return res
+
   def get_totals(self):
     return f'{self.name},"{self.date}",{self.red_name},{self.blue_name},{self.red_total_kds},{self.blue_total_kds},{self.red_total_atmpd_sig_str},{self.red_total_landed_sig_str},{self.blue_total_atmpd_sig_str},{self.blue_total_landed_sig_str},{self.red_total_sig_str_acc},{self.blue_total_sig_str_acc},{self.red_total_atmpd_str},{self.red_total_landed_str},{self.blue_total_atmpd_str},{self.blue_total_landed_str},{self.red_total_td_atmpd},{self.red_total_td_landed},{self.blue_total_td_atmpd},{self.blue_total_td_landed},{self.blue_total_td_acc},{self.blue_total_td_acc},{self.red_total_sub_att},{self.blue_total_sub_att},{self.red_total_rev},{self.blue_total_rev},{self.red_total_ctrl},{self.blue_total_ctrl}'
 
   def __str__(self):
-    return f'{self.get_totals()}\n'
+    return f'{self.get_totals()},{self.get_rounds_kds()}\n'

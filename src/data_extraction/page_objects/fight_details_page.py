@@ -84,6 +84,3 @@ class FightDetailsPage(BasePage):
   def get_striking_rounds(self):
     return self.striking_rounds_section.find_elements(*FightDetailsPageLocator.ROUND_HEADER)
   
-  def get_striking_round(self, index):
-    return self.striking_rounds_section.find_elements(*FightDetailsPageLocator.ROUND_BODY)[index]
-    
