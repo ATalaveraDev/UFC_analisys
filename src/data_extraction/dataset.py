@@ -2,19 +2,22 @@ from selenium import webdriver
 from models.ufc_event import UFC_Event
 from page_objects.page import EventPage, EventsListPage
 from csv_writer import CsvWriter
-from config import HEADERS, ENDPOINT, ROUNDS_SIG_STRIKES_HEADERS
+from config import ENDPOINT
 from page_objects.fight_details_page import FightDetailsPage
 from models.round import Round
+from models.headers import Headers
 
 csv_writer = CsvWriter()
-csv_writer.set_headers(HEADERS + ROUNDS_SIG_STRIKES_HEADERS)
+
+headers = Headers()
+csv_writer.set_headers(headers.get_all())
 
 driver = webdriver.Chrome()
 driver.get(ENDPOINT)
 
 ufc_events_page = EventsListPage(driver)
 events_links = ufc_events_page.get_events_links()
-for event_link in events_links[0:3]:
+for event_link in events_links[0:1]:
   ufc_event = UFC_Event(event_link)
   
   driver.get(ufc_event.link)
@@ -31,11 +34,15 @@ for event_link in events_links[0:3]:
     ufc_event.set_totals(*fight_page.get_totals())
 
     
-    for round_section in fight_page.get_striking_rounds():
-      round_section.open()
-      round = Round(round_section.index)
-      round.set_kds(round_section.get_kds())
-      round.set_sig_strikes(round_section.get_sig_strikes())
+    for index in range(5):
+      round = Round(index)
+      
+      round_section = fight_page.get_striking_rounds(index)
+
+      if round_section:
+        round_section.open()
+        round.set_kds(round_section.get_kds())
+        round.set_sig_strikes(round_section.get_sig_strikes())
 
       ufc_event.set_round(round)
 

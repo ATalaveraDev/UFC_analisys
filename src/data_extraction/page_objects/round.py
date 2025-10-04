@@ -6,7 +6,7 @@ class Round(BasePage):
     super().__init__(driver)
     self.index = round_index
     self.section = self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[2]
-    self.row = self.section.find_elements(*FightDetailsPageLocator.ROUND_BODY)[round_index].find_element(*FightDetailsPageLocator.ROUND_ROW)
+    self.row = self.section.find_elements(*FightDetailsPageLocator.ROUND_BODY)[self.index].find_element(*FightDetailsPageLocator.ROUND_ROW)
 
   def open(self):
     self.section.click()

@@ -4,9 +4,11 @@ class UFC_Event:
   def __init__(self, link):
     self.link = link
     self.rounds = {
+      0: None,
       1: None,
       2: None,
-      3: None
+      3: None,
+      4: None
     }
 
   def set_name(self, name):
@@ -81,10 +83,7 @@ class UFC_Event:
   def get_rounds(self):
     result = ''
     for round in self.rounds.values():
-      if round is not None:
-        result += round.__str__()
-      else:
-        result += 
+      result += round.__str__()
     return result
 
   def __str__(self):
