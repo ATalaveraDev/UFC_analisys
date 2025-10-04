@@ -57,6 +57,17 @@ class UFC_Event:
     self.red_total_ctrl = ctrl[self.RED]
     self.blue_total_ctrl = ctrl[self.BLUE]
 
+  def set_totals(self, kds, sig_str, sig_str_acc, strikes, tds, tds_acc, sub_att, rev, ctrl):
+    self.set_total_kds(kds)
+    self.set_total_sig_str(sig_str)
+    self.set_total_sig_str_acc(sig_str_acc)
+    self.set_total_str(strikes)
+    self.set_total_td(tds)
+    self.set_total_td_acc(tds_acc)
+    self.set_total_sub_att(sub_att)
+    self.set_total_rev(rev)
+    self.set_total_ctrl(ctrl)
+
   def set_round_kds(self, round, kds):
     if round == 1:
       self.red_r1_kds = kds[self.RED]
