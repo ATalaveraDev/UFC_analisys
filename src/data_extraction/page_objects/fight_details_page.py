@@ -1,3 +1,4 @@
+from .round import Round
 from .page import BasePage
 from .locators import FightDetailsPageLocator
 
@@ -82,7 +83,7 @@ class FightDetailsPage(BasePage):
     }
   
   def get_striking_rounds(self):
-    return self.striking_rounds_section.find_elements(*FightDetailsPageLocator.ROUND_HEADER)
+    return [Round(self.driver, i+1) for i in range(len(self.striking_rounds_section.find_elements(*FightDetailsPageLocator.ROUND_HEADER)))]
   
   def get_totals(self):
     return self.get_total_kds(), self.get_total_sig_str(), self.get_total_sig_str_acc(), self.get_total_str(), self.get_total_td(), self.get_total_td_acc(), self.get_total_sub_att(), self.get_total_rev(), self.get_total_ctrl()

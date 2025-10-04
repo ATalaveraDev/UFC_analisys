@@ -2,12 +2,12 @@ from selenium import webdriver
 from models.ufc_event import UFC_Event
 from page_objects.page import EventPage, EventsListPage
 from csv_writer import CsvWriter
-from config import HEADERS, ENDPOINT
+from config import HEADERS, ENDPOINT, ROUNDS_SIG_STRIKES_HEADERS
 from page_objects.fight_details_page import FightDetailsPage
-from page_objects.round import Round
+from models.round import Round
 
 csv_writer = CsvWriter()
-csv_writer.set_headers(HEADERS)
+csv_writer.set_headers(HEADERS + ROUNDS_SIG_STRIKES_HEADERS)
 
 driver = webdriver.Chrome()
 driver.get(ENDPOINT)
@@ -28,15 +28,16 @@ for event_link in events_links[0:3]:
     driver.get(fight_link)
     fight_page: FightDetailsPage = FightDetailsPage(driver)
     ufc_event.set_fighters(fight_page.get_fighters())
-    ufc_event.set_totals(fight_page.get_totals())
+    ufc_event.set_totals(*fight_page.get_totals())
 
-    striking_rounds = fight_page.get_striking_rounds()
+    
+    for round_section in fight_page.get_striking_rounds():
+      round_section.open()
+      round = Round(round_section.index)
+      round.set_kds(round_section.get_kds())
+      round.set_sig_strikes(round_section.get_sig_strikes())
 
-    if len(striking_rounds):
-      for i in range(len(striking_rounds)):
-        round = Round(driver, i+1)
-        round.section.click()
-        ufc_event.set_round_kds(i+1, round.get_kds())
+      ufc_event.set_round(round)
 
     csv_writer.write_row(ufc_event.__str__())
     driver.execute_script("window.history.go(-1)")

@@ -1,3 +1,6 @@
+RED = 'red'
+BLUE = 'blue'
+
 HEADERS = [
   'event_name',
   'event_date',
@@ -33,6 +36,21 @@ HEADERS = [
   'blue_r2_kds',
   'red_r3_kds',
   'blue_r3_kds'
+]
+
+ROUNDS_SIG_STRIKES_HEADERS = [
+  'red_r1_atmpd_sig_strikes',
+  'red_r1_landed?sig_strikes',
+  'blue_r1_atmpd_sig_strikes',
+  'blue_r1_landed_sig_strikes',
+  'red_r2_atmpd_sig_strikes',
+  'red_r2_landed_sig_strikes',
+  'blue_r2_atmpd_sig_strikes',
+  'blue_r2_landed_sig_strikes',
+  'red_r3_atmpd_sig_strikes',
+  'red_r3_landed_sig_strikes',
+  'blue_r3_atmpd_sig_strikes',
+  'blue_r3_landed_sig_strikes'
 ]
 
 ENDPOINT = 'http://ufcstats.com/statistics/events/completed?page=all'
