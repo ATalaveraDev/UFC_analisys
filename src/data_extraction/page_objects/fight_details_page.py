@@ -7,7 +7,7 @@ class FightDetailsPage(BasePage):
   def __init__(self, driver):
     super().__init__(driver)
     self.totals_section = Table(self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[1])
-    self.striking_rounds_section = Table(self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[2])
+    self.totals_per_round_section = Table(self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[2])
 
   def get_fighters(self):
     fighters = self.driver.find_elements(*FightDetailsPageLocator.FIGHTERS)
@@ -46,9 +46,9 @@ class FightDetailsPage(BasePage):
   def get_total_ctrl(self):
     return self.totals_section.get_ctrl()
   
-  def get_striking_rounds(self, index):
+  def get_totals_per_round(self, index):
     try:
-      return [Round(self.driver, i+1) for i in range(len(self.striking_rounds_section.element.find_elements(*FightDetailsPageLocator.ROUND_HEADER)))][index]
+      return [Round(self.driver, i+1) for i in range(len(self.totals_per_round_section.element.find_elements(*FightDetailsPageLocator.ROUND_HEADER)))][index]
     except:
       return None
   

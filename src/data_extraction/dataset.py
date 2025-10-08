@@ -37,11 +37,11 @@ for event_link in events_links[0:1]:
     for index in range(5):
       round = Round(index)
       
-      round_section = fight_page.get_striking_rounds(index)
+      totals_per_round_section = fight_page.get_totals_per_round(index)
 
-      if round_section:
-        round_section.open()
-        round.set_stats(*round_section.get_stats())
+      if totals_per_round_section:
+        totals_per_round_section.open()
+        round.set_stats(*totals_per_round_section.get_stats())
 
       ufc_event.set_round(round)
 
