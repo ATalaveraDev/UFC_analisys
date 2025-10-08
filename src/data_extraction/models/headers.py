@@ -41,7 +41,25 @@ class Headers:
         f"red_r{i}_atmpd_sig_strikes",
         f"red_r{i}_landed_sig_strikes",
         f"blue_r{i}_atmpd_sig_strikes",
-        f"blue_r{i}_landed_sig_strike"
+        f"blue_r{i}_landed_sig_strike",
+        f"red_r{i}_sig_str_acc",
+        f"blue_r{i}_sig_str_acc",
+        f"red_r{i}_atmpd_str",
+        f"red_r{i}_landed_str",
+        f"blue_r{i}_atmpd_str",
+        f"blue_r{i}_landed_str",
+        f"red_r{i}_td_atmpd",
+        f"red_r{i}_td_landed",
+        f"blue_r{i}_td_atmpd",
+        f"blue_r{i}_td_landed",
+        f"red_r{i}_td_acc",
+        f"blue_r{i}_td_acc",
+        f"red_r{i}_sub_att",
+        f"blue_r{i}_sub_att",
+        f"red_r{i}_rev",
+        f"blue_r{i}_rev",
+        f"red_r{i}_ctrl",
+        f"blue_r{i}_ctrl",
       ]
     return result
   

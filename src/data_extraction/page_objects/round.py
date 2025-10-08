@@ -1,4 +1,5 @@
 from .page import BasePage
+from .table import Table
 from .locators import FightDetailsPageLocator
 
 class Round(BasePage):
@@ -6,25 +7,37 @@ class Round(BasePage):
     super().__init__(driver)
     self.index = round_index
     self.section = self.driver.find_elements(*FightDetailsPageLocator.TABLE_SECTION)[2]
-    self.row = self.section.find_elements(*FightDetailsPageLocator.ROUND_BODY)[self.index].find_element(*FightDetailsPageLocator.ROUND_ROW)
+    self.row = Table(self.section.find_elements(*FightDetailsPageLocator.ROUND_BODY)[self.index].find_element(*FightDetailsPageLocator.ROUND_ROW))
 
   def open(self):
     self.section.click()
-
-  def get_cells_of_column(self, index):
-    cols = self.row.find_elements(*FightDetailsPageLocator.TOTALS_COLS)[index]
-    return cols.find_elements(*FightDetailsPageLocator.COL_CONTENTS)
   
   def get_kds(self):
-    cells = self.get_cells_of_column(1)
-    return {
-      'red': cells[0].text,
-      'blue': cells[1].text
-    }
+    return self.row.get_kds()
   
-  def get_sig_strikes(self):
-    cells = self.get_cells_of_column(2)
-    return {
-      'red': tuple(cells[0].text.split(' of ')),
-      'blue': tuple(cells[1].text.split(' of '))
-    }
+  def get_sig_str(self):
+    return self.row.get_sig_str()
+  
+  def get_sig_str_acc(self):
+    return self.row.get_sig_str_acc()
+  
+  def get_str(self):
+    return self.row.get_str()
+
+  def get_td(self):
+    return self.row.get_td()
+  
+  def get_td_acc(self):
+    return self.row.get_td_acc()
+
+  def get_sub_att(self):
+    return self.row.get_sub_att()
+
+  def get_rev(self):
+    return self.row.get_rev()
+
+  def get_ctrl(self):
+    return self.row.get_ctrl()
+  
+  def get_stats(self):
+    return self.get_kds(), self.get_sig_str(), self.get_sig_str_acc(), self.get_str(), self.get_td(), self.get_td_acc(), self.get_sub_att(), self.get_rev(), self.get_ctrl()

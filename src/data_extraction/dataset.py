@@ -41,8 +41,7 @@ for event_link in events_links[0:1]:
 
       if round_section:
         round_section.open()
-        round.set_kds(round_section.get_kds())
-        round.set_sig_strikes(round_section.get_sig_strikes())
+        round.set_stats(*round_section.get_stats())
 
       ufc_event.set_round(round)
 
