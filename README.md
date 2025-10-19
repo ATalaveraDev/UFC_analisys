@@ -1,6 +1,9 @@
 # Overview
 This project generates a CSV file with the data that appears on the official UFC statistics website. The purpose of it is just for educational purposes
 
+**Notion board**
+[Notion Board](https://www.notion.so/UFC-Data-Warehouse-2910369878dd80269684c48fd35d4dcd?source=copy_link)
+
 ![alt text](public/ufc_stats_logo.png "UFC Stats Page")
 
 # Table of Contents
